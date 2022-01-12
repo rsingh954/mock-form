@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Animated Login Form</title>
+
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <div class="page-wrap">
+    
+    <div class="left-panel">
+      <div class="illustration">
+        <img src="illustration.png" alt="Illustration" class="image" />
+      </div>
+      <h2>Shopping made easy</h2>
+    </div>
+
+    <div class="right-panel">
+      <h1>
+        <strong>Welcome</strong>
+      </h1>
+      <form class="animated-form">
+        <h3>Login to your account</h3>
+        <div class="form-group">
+          <label for="mail">Email</label>
+          <input type="mail" id="mail" class="mail" name = 'mail' />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="password" />
+        </div>
+        <div class="form-group flex-start">
+          <input type="submit" value="LOGIN" class="button" />
+        </div>
+        <div class="form-group flex-start">
+          <input type="submit" value="NEW USER?" class="button" id='new_account' />
+        </div>
+        <div class="lost-password">
+          <a href="#" class="link">Forgot your password?</a>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    let input_fields = document.querySelectorAll('input');
+    
+    for (let i = 0; i < input_fields.length; i++) {
+      let field = input_fields[i];
+      field.addEventListener('input', function (e) {
+        e.preventDefault();
+        if (e.target.value != "") {
+          e.target.parentNode.classList.add('has-content');
+        } else if (e.target.value == "") {
+          e.target.parentNode.classList.remove('has-content');
+        }
+      });
+    }
+    const newAccount = document.querySelector('#new_account');
+    newAccount.addEventListener('click', newAccountForm)
+
+    function newAccountForm(e){
+      e.preventDefault();
+      console.log(e)
+      const animatedForm = document.querySelector('.animated-form')
+      animatedForm.style.display = 'none' 
+      newLoginForm();
+    }
+
+    function newLoginForm(){
+      const right = document.querySelector('.right-panel');
+      const form = document.createElement('form');
+      form.classList.add('new_animated_form')
+      form.classList.add('animated-form')
+
+
+      const h3 = document.createElement('h3')
+      h3.textContent = "Create your account!"
+      form.append(h3)
+
+      const email = document.createElement('div')
+      email.classList.add('form-group')
+      const emailLabel = document.createElement('label');
+      emailLabel.setAttribute('for', 'mail')
+      emailLabel.textContent = 'Email'
+      const emailInput = document.createElement('input')
+      emailInput.setAttribute('type', 'mail')
+      emailInput.setAttribute('required', 'true')
+      emailInput.setAttribute('name', 'mail')
+      emailInput.classList.add('mail')
+      email.appendChild(emailLabel)
+      email.appendChild(emailInput)
+
+      const country = document.createElement('div')
+      country.classList.add('form-group')
+      const countryLabel = document.createElement('label');
+      countryLabel.setAttribute('for', 'country')
+      countryLabel.textContent = 'Country'
+      const countryInput = document.createElement('input')
+      countryInput.setAttribute('type', 'text')
+      countryInput.setAttribute('name', 'country')
+      countryInput.classList.add('country')
+      countryInput.setAttribute('required', 'true')
+      country.appendChild(countryLabel)
+      country.appendChild(countryInput)
+
+      const zip = document.createElement('div')
+      zip.classList.add('form-group')
+      const zipLabel = document.createElement('label');
+      zipLabel.setAttribute('for', 'zip')
+      zipLabel.textContent = 'Zip Code'
+      const zipInput = document.createElement('input')
+      zipInput.setAttribute('type', 'number')
+      zipInput.setAttribute('name', 'zip')
+      zipInput.setAttribute('required', 'true')
+      zipInput.classList.add('zip')
+      zip.appendChild(zipLabel)
+      zip.appendChild(zipInput)
+
+      const password = document.createElement('div')
+      password.classList.add('form-group')
+      const passwordLabel = document.createElement('label');
+      passwordLabel.setAttribute('for', 'password')
+      passwordLabel.textContent = 'Password'
+      const passwordInput = document.createElement('input')
+      passwordInput.setAttribute('type', 'password')
+      passwordInput.setAttribute('name', 'password')
+      passwordInput.setAttribute('required', 'true')
+      passwordInput.classList.add('password')
+      password.appendChild(passwordLabel)
+      password.appendChild(passwordInput)
+
+      const passwordConfirm = document.createElement('div')
+      passwordConfirm.classList.add('form-group')
+      const passwordConfirmLabel = document.createElement('label');
+      passwordConfirmLabel.setAttribute('for', 'confirm-password')
+      passwordConfirmLabel.textContent = 'Confirm Password'
+      const passwordConfirmInput = document.createElement('input')
+      passwordConfirmInput.setAttribute('type', 'confirm-password')
+      passwordConfirmInput.setAttribute('name', 'confirm-password')
+      passwordConfirmInput.setAttribute('required', 'true')
+      passwordConfirmInput.classList.add('password')
+      passwordConfirm.appendChild(passwordConfirmLabel)
+      passwordConfirm.appendChild(passwordConfirmInput)
+
+      const submit = document.createElement('div')
+      submit.classList.add('form-group')
+      submit.classList.add('flex-start')
+      const submitInput = document.createElement('input')
+      submitInput.setAttribute('type', 'submit')
+      submitInput.setAttribute('value', 'CREATE')
+      submitInput.setAttribute('required', 'true')
+      submitInput.classList.add('button')
+      submitInput.onclick = createNewUser;
+      submit.appendChild(submitInput)
+
+      form.appendChild(email)
+      form.appendChild(country)
+      form.appendChild(zip)
+      form.appendChild(password)
+      form.appendChild(passwordConfirm)
+      form.appendChild(submit)
+      right.appendChild(form);
+
+    }
+    function createNewUser(e){
+
+    }
+  </script>
+</body>
+</html>
